@@ -1,8 +1,8 @@
 <div align="center">
-    <img src="images/confluent.png" width=50% height=50%>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Confluent_Logo.png" width=40% height=40%> x <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" width=40% height=40%> x <img src="https://lh3.googleusercontent.com/upNbqAZ6mZFW6AQfgpnj6Gzm605ck7cqLywg2LhQYT8N8bQQ19XMWvFNm8tSQSKZ=h100" width=40% height=40%>
 </div>
 
-# <div align="center">Confluent x Google Cloud Data Streaming BUILDER Lab</div>
+# <div align="center">Confluent x Google Cloud <p/> Data Streaming BUILDER Lab</div>
 
 <br>
 
@@ -26,7 +26,7 @@
 
 ## **Architecture**
 
-<div align="center" padding=25px>
+<div align="center" padding=25px background: white>
     <img src="images/GCP-builder-arch.png" width=75% height=75%>
 </div>
 
@@ -112,14 +112,17 @@ An environment contains clusters and its deployed components such as Apache Flin
     <img src="images/cluster-region.png" width=50% height=50%>
 </div>
 
-8. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
+8. Add Promo-code for this workshop
+
+9. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
 
 <div align="center" padding=25px>
     <img src="images/create-cluster.png" width=50% height=50%>
 </div>
 
-9. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
-10. Click **Launch Cluster**. 
+10. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
+
+11. Click **Launch Cluster**. 
 
 ***
 
