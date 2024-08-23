@@ -4,8 +4,6 @@
 
 # <div align="center">Confluent x Google Cloud <p/> Data Streaming BUILDER Lab</div>
 
-<br>
-
 ## **Agenda**
 1. [Log into Confluent Cloud](#step-1)
 2. [Create an Environment and Cluster](#step-2)
