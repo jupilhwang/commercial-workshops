@@ -1,8 +1,7 @@
-<div align="center">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Confluent_Logo.png" width=40% height=40%> x <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" width=40% height=40%> x <img src="https://lh3.googleusercontent.com/upNbqAZ6mZFW6AQfgpnj6Gzm605ck7cqLywg2LhQYT8N8bQQ19XMWvFNm8tSQSKZ=h100" width=40% height=40%>
-</div>
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Confluent_Logo.png" width=30% height=30%> x <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg" width=30% height=30%> x <img src="https://lh3.googleusercontent.com/upNbqAZ6mZFW6AQfgpnj6Gzm605ck7cqLywg2LhQYT8N8bQQ19XMWvFNm8tSQSKZ=h100" width=30% height=30%>
 
-# <div align="center">Confluent x Google Cloud <p/> Data Streaming BUILDER Lab</div>
+
+# Confluent x Google Cloud <p/> Data Streaming BUILDER Lab
 
 ## **Agenda**
 1. [Log into Confluent Cloud](#step-1)
@@ -24,23 +23,22 @@
 
 ## **Architecture**
 
-<div align="center" padding=25px background: white>
-    <img src="images/GCP-builder-arch.png" width=75% height=75%>
-</div>
+![](images/GCP-builder-arch.png)
 
 ***
 
 ## **Prerequisites**
 
 1. Create a Confluent Cloud Account.
-    - Sign up for a Confluent Cloud account [here](https://www.confluent.io/confluent-cloud/tryfree/).
+    - Sign up for a Confluent Cloud account [here](https://www.confluent.io/ko-kr/get-started/?utm_campaign=tm.fm-apac_cd.2024.09.24_APAC_KR_WS_GCP-x-CFLT-BUILDER-Live-Lab).
+
+<img src=images/confluent-cloud-account-google.png width=50%>
+
     - Once you have signed up and logged in, click on the menu icon at the upper right hand corner, click on “Billing & payment”, then enter payment details under “Payment details & contacts”. A screenshot of the billing UI is included below.
 
 > **Note:** You will create resources during this workshop that will incur costs. When you sign up for a Confluent Cloud account, you will get free credits to use in Confluent Cloud. This will cover the cost of resources created during the workshop. More details on the specifics can be found [here](https://www.confluent.io/confluent-cloud/tryfree/).
 
-<div align="center" padding=25px>
-    <img src="images/billing.png" width=75% height=75%>
-</div>
+<img src=images/billing-payment.png width=50%>
 
 ***
 
@@ -56,14 +54,12 @@ During the session, we will explore:
 
 ***
 
-
 ## <a name="step-1"></a>Log into Confluent Cloud
 
 1. Log into [Confluent Cloud](https://confluent.cloud) and enter your email and password.
 
-<div align="center" padding=25px>
-    <img src="images/login.png" width=50% height=50%>
-</div>
+<img src="images/login.png" width=50%>
+
 
 2. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
 
@@ -73,50 +69,41 @@ During the session, we will explore:
 
 An environment contains clusters and its deployed components such as Apache Flink, Connectors, ksqlDB, and Schema Registry. You have the ability to create different environments based on your company's requirements. For example, you can use environments to separate Development/Testing, Pre-Production, and Production clusters. 
 
-1. Click **+ Add Environment**. Specify an **Environment Name** and Click **Create**. 
+1. Click **+ Add Environment**. Specify an **Environment Name** 
 
 >**Note:** There is a *default* environment ready in your account upon account creation. You can use this *default* environment for the purpose of this workshop if you do not wish to create an additional environment.
 
-<div align="center" padding=25px>
-    <img src="images/environment.png" width=50% height=50%>
-</div>
+<img src="images/environment.png" width=50%>
 
-2. Select **Essentials** for Stream Governance Packages, click **Begin configuration**.
+<!-- 2. Select **Essentials** for Stream Governance Packages, click **Create**.
 
-<div align="center" padding=25px>
-    <img src="images/stream-governance-1.png" width=50% height=50%>
-</div>
+3. Select **GCP Singapore Region** for Stream Governance Essentials, click **Continue**.
 
-3. Select **GCP Sydney Region** for Stream Governance Essentials, click **Continue**.
+<img src="images/stream-governance-2.png" width=50%> -->
 
-<div align="center" padding=25px>
-    <img src="images/stream-governance-2.png" width=50% height=50%>
-</div>
-
-4. Now that you have an environment, click **Create Cluster**. 
+2. Now that you have an environment, click **Create Cluster on my own**. 
 
 > **Note:** Confluent Cloud clusters are available in 3 types: Basic, Standard, and Dedicated. Basic is intended for development use cases so you will use that for the workshop. Basic clusters only support single zone availability. Standard and Dedicated clusters are intended for production use and support Multi-zone deployments. If you are interested in learning more about the different types of clusters and their associated features and limits, refer to this [documentation](https://docs.confluent.io/current/cloud/clusters/cluster-types.html).
 
 5. Chose the **Basic** cluster type. 
 
-<div align="center" padding=25px>
-    <img src="images/cluster-type.png" width=50% height=50%>
-</div>
+<img src="images/cluster-type.png" width=50%>
 
 6. Click **Begin Configuration**. 
 7. Choose GCP as Cloud Provider and your preferred, region (Singapore/ asia-southeast1) , and Uptime SLA is default. 
 
-<div align="center" padding=25px>
-    <img src="images/cluster-region.png" width=50% height=50%>
-</div>
+<img src="images/cluster-region.png" width=50%>
 
 8. Add Promo-code for this workshop
 
+<img src="images/enter-payment.png" width=50%>
+
+9/13 Test: **POPTOUT000XUBWB9SI7**
+9/24 CFLTxGoogle Builder Live Lab: **POPTOUT000E6WJU8LFX66**
+
 9. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
 
-<div align="center" padding=25px>
-    <img src="images/create-cluster.png" width=50% height=50%>
-</div>
+<img src="images/create-cluster.png" width=50%>
 
 10. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
 
@@ -128,48 +115,40 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 1. On the navigation menu, select **Flink** and click **Create Compute Pool**.
 
-<div align="center" padding=25px>
-    <img src="images/create-flink-pool-1.png" width=50% height=50%>
-</div>
+<img src="images/create-flink-pool-1.png" width=50%>
 
-2. Select **Region** and then **Continue**.
-<div align="center" padding=25px>
-    <img src="images/create-flink-pool-2.png" width=50% height=50%>
-</div>
+
+2. Select **Region** (Singapore) and then **Continue**.
+
+> Choose the same Region with Cluster what created before
+
+<img src="images/create-flink-pool-2.png" width=50%>
+
 
 3. Name you **Pool Name**. Click **Create**.
 
-<div align="center" padding=25px>
-    <img src="images/create-flink-pool-3.png" width=50% height=50%>
-</div>
+<img src="images/create-flink-pool-3.png" width=50%>
 
 > **Note:** The capacity of a compute pool is measured in CFUs. Compute pools expand and shrink automatically based on the resources required by the statements using them. A compute pool without any running statements scale down to zero. The maximum size of a compute pool is configured during creation. 
 
-4. Flink Compute pools will be ready shortly. You can click **Open SQL workspace** when the pool is ready to use.
+4. Flink Compute pools will be ready in minutes. You can click **Open SQL workspace** when the pool is ready to use.
 
-<div align="center" padding=25px>
-    <img src="images/create-flink-pool-4.png" width=50% height=50%>
-</div>
+<img src="images/create-flink-pool-4.png" width=50%>
+
 
 5. Change your workspace name by clicking **settings button**. Click **Save changes** after you update the workspace name.
 
-<div align="center" padding=25px>
-    <img src="images/flink-workspace-1.png" width=50% height=50%>
-</div>
+<img src="images/flink-workspace-1.png" width=50%>
+
 
 6. Set the default Catalog as your environment name.
 
-<div align="center" padding=25px>
-    <img src="images/flink-workspace-2.png" width=50% height=50%>
-</div>
+<img src="images/flink-workspace-2.png" width=50%>
+
 
 7. Set the default Database as your cluster name.
 
-<div align="center" padding=25px>
-    <img src="images/flink-workspace-2.png" width=50% height=50%>
-</div>
-
-***
+<img src="images/flink-workspace-2.png" width=50%>
 
 ***
 
@@ -179,60 +158,51 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 > **Note:** This section shows Cluster Metrics, such as Throughput and Storage. This page also shows the number of Topics, Partitions, Connectors, and ksqlDB Applications.  Below is an example of the metrics dashboard once you have data flowing through Confluent Cloud. 
 
-<div align="center" padding=25px>
-    <img src="images/cluster-metrics.png" width=75% height=75%>
-</div>
+<img src=images/cluster-metrics.png width=50%>
 
-2. Click on **Cluster Settings**. This is where you can find your *Cluster ID, Bootstrap Server, Cloud Details, Cluster Type,* and *Capacity Limits*.
+2. Click on **Cluster Settings**. This is where you can find your **Cluster ID, Bootstrap Server, Cloud Details, Cluster Type,** and **Capacity Limits**.
 3. On the same navigation menu, select **Topics** and click **Create Topic**. 
 4. Enter **users_topic** as the topic name, **1** as the number of partitions, and then click **Create with defaults**. 
 
-<div align="center" padding=25px>
-    <img src="images/create-topic.png" width=50% height=50%>
-</div>
+![](images/create-users-topic.png)
 
 5. Repeat the previous step and create a second topic name **stocks_topic** and **1** as the number of partitions.
+
+![](images/create-stocks-topic.png)
+
 
 > **Note:** Topics have many configurable parameters. A complete list of those configurations for Confluent Cloud can be found [here](https://docs.confluent.io/cloud/current/using/broker-config.html). If you are interested in viewing the default configurations, you can view them in the Topic Summary on the right side. 
 
 7. After topic creation, the **Topics UI** allows you to monitor production and consumption throughput metrics and the configuration parameters for your topics. When you begin sending messages to Confluent Cloud, you will be able to view those messages and message schemas.
 8. Below is a look at the topic, **users_topic**, but you need to send data to this topic before you see any metrics.
 
-<div align="center" padding=25px>
-    <img src="images/users-topic.png" width=75% height=75%>
-</div>
+![](images/users-topic.png)
 
 ***
-
 
 ## <a name="step-5"></a>Create an API Key
 
 1. Click **API Keys** on the navigation menu. 
 2. Click **Create Key** in order to create your first API Key. If you have an existing API Key select **+ Add Key** to create another API Key.
 
-<div align="center" padding=25px>
-    <img src="images/create-apikey.png" width=75% height=75%>
-</div>
+<img src="images/create-apikey.png" width=50%>
 
-3. Select **Global Access** and then click **Next**. 
+
+3. Select **My account** and then click **Next**. 
 4. Copy or save your API Key and Secret somewhere. You will need these later on in the lab, you will not be able to view the secret again once you close this dialogue. 
 5. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API Keys** section. If you don’t see the API key populate right away, refresh the browser.
 
 ***
 
-## <a name="step-6"></a>Create Datagen Connectors for Users and Stocks
+## <a name="step-6"></a>Create Sample Data(Datagen Source) Connectors for Users and Stocks
 
 The next step is to produce sample data using the Datagen Source connector. You will create three Datagen Source connectors. One connector will send sample customer data to **users_topic** topic, the other connector will send sample product data to **stocks_topic** topic.
 
 1. First, you will create the connector that will send data to **users_topic**. From the Confluent Cloud UI, click on the **Connectors** tab on the navigation menu. Click on the **Datagen Source** icon.
 
-<div align="center" padding=25px>
-    <img src="images/connectors.png" width=75% height=75%>
-</div>
+<img src="images/connectors.png" width=80%>
 
 2. Enter the following configuration details. The remaining fields can be left blank.
-
-<div align="center">
 
 | setting                            | value                        |
 |------------------------------------|------------------------------|
@@ -244,32 +214,25 @@ The next step is to produce sample data using the Datagen Source connector. You 
 | quickstart                         | Users                        |
 | max interval between messages (ms) | 1000                         |
 | tasks                              | 1                            |
-</div>
 
-<br>
+<img src="images/datagen-apikey.png" width=80%>
+<img src="images/datagen-1.png" width=80%>
+<img src="images/datagen-2.png" width=80%>
 
-<div align="center" padding=25px>
-    <img src="images/datagen-1.png" width=75% height=75%>
-    <img src="images/datagen-2.png" width=75% height=75%>
-</div>
 
-3. Click on **Show advanced configurations** and complete the necessary fields and click **Continue**.
+3. Click on **Additional configurations** and complete the necessary fields and click **Continue**.
 
-<div align="center" padding=25px>
-    <img src="images/datagen-3.png" width=75% height=75%>
-</div>
+<img src="images/datagen-3.png" width=80%>
+
    
 4. Before launching the connector, you should see something similar to the following. If everything looks similar, select **Launch**. 
 
-<div align="center" padding=25px>
-    <img src="images/datagen-4.png" width=50% height=50%>
-</div>
+<img src="images/datagen-4.png" width=50%>
+
 
 5. Next, create the second connector that will send data to **stocks_topic**. Click on **+ Add Connector** and then the **datagen Source** icon again. 
 
 6. Enter the following configuration details. The remaining fields can be left blank. 
-
-<div align="center">
 
 | setting                            | value                        |
 |------------------------------------|------------------------------|
@@ -281,13 +244,12 @@ The next step is to produce sample data using the Datagen Source connector. You 
 | quickstart                         | Stocks trade                 |
 | max interval between messages (ms) | 1000                         |
 | tasks                              | 1                            |
-</div>
 
 <br> 
 
 7. Review the output again and then select **Launch**.
 
-> **Note:** It may take a few moments for the connectors to launch. Check the status and when both are ready, the status should show *running*. <br> <div align="center"><img src="images/running-connectors.png" width=75% height=75%></div>
+> **Note:** It may take a few moments for the connectors to launch. Check the status and when both are ready, the status should show *running*. <br> <img src="images/running-connectors.png" width=80%>
 
 > **Note:** If the connectors fails, there are a few different ways to troubleshoot the error:
 > * Click on the *Connector Name*. You will see a play and pause button on this page. Click on the play button.
@@ -301,15 +263,13 @@ The next step is to produce sample data using the Datagen Source connector. You 
 
 * You should now be able to see the messages within the UI. You can view the specific messages by clicking the icon. 
 
-<div align="center">
-    <img src="images/message-view-1.png" width=75% height=75%>
-</div> 
+<img src="images/message-view-1.png" width=80%>
+ 
 
 * The message details should look something like the following. 
 
-<div align="center">
-    <img src="images/message-view-2.png" width=75% height=75%>
-</div>
+<img src="images/message-view-2.png" width=80%>
+
 
 ***
 
@@ -335,9 +295,9 @@ SHOW DATABASES;
 ```sql
 SHOW TABLES;
 ```
-<div align="center">
-    <img src="images/show-tables.png" width=75% height=75%>
-</div>
+
+<img src="images/show-tables.png" width=80%>
+
 
 Understand how the table `stocks_topic` was created:
 
@@ -365,7 +325,7 @@ DESCRIBE users_topic;
 4. Check the customers in Texas whose name start with `B`.
 ```sql
 SELECT * FROM users_topic
-  WHERE `userid` = 'User_8' AND `gender` LIKE 'MA%';
+  WHERE userid = 'User_8' AND gender LIKE 'MA%';
 ```
 
 5. Check the first five stocks trades for one customer.
@@ -403,11 +363,55 @@ CREATE TABLE stocks_trades_enriched_user_detail(
   price INT, 
   account STRING
 ) WITH (
-    'kafka.partitions' = '3',
     'changelog.mode' = 'retract'
-);
+) AS      
+    SELECT ut.userid AS userid, 
+           regionid, 
+           gender, 
+           side, 
+           quantity, 
+           symbol, 
+           price, 
+           account
+    FROM stocks_topic st
+    LEFT JOIN users_topic ut
+    ON st.userid = ut.userid;
+;
+```
+> 6 partitions
+> changelog.mode = upsert / append / RETRACT https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#changelog-mode
+> If you want to create with 3 partitions
+> 
+
+```sql
+CREATE TABLE stocks_trades_enriched_user_detail(
+  userid STRING,
+  regionid STRING, 
+  gender STRING, 
+  side STRING, 
+  quantity INT, 
+  symbol STRING, 
+  price INT, 
+  account STRING
+) 
+DISTRIBUTED INTO 3 BUCKETS
+WITH (
+    'changelog.mode' = 'retract'
+) AS      
+    SELECT ut.userid AS userid, 
+           regionid, 
+           gender, 
+           side, 
+           quantity, 
+           symbol, 
+           price, 
+           account
+    FROM stocks_topic st
+    LEFT JOIN users_topic ut
+    ON st.userid = ut.userid;
 ```
 
+<!-- 
 8. Insert joined data from 2 tables into the new table. Keep this query running.
 ```sql
 INSERT INTO stocks_trades_enriched_user_detail
@@ -422,16 +426,14 @@ INSERT INTO stocks_trades_enriched_user_detail
     FROM stocks_topic st
     LEFT JOIN users_topic ut
     ON st.userid = ut.userid;
-```
-9. Add Flink Statement windows by click (+). Check the enriched table by running this query.
+``` -->
+8. Add Flink Statement windows by click (+). Check the enriched table by running this query.
 ```sql
 select * from stocks_trades_enriched_user_detail;
 ```
-<div align="center">
-    <img src="images/stocks-enriched-query.png" width=75% height=75%>
-</div> 
 
-
+<img src="images/stocks-enriched-query.png" width=80%>
+ 
 ***
 
 ## <a name="step-8"></a>Flink Aggregations
@@ -471,25 +473,22 @@ CREATE TABLE number_of_times_stock_bought(
   symbol STRING,
   total_times_bought BIGINT,
   PRIMARY KEY (symbol) NOT ENFORCED
-)WITH (
-     'kafka.partitions' = '3'
-);
+)
+DISTRIBUTED INTO 3 BUCKETS
+AS
+    SELECT symbol,
+        COUNT(quantity) AS total_times_bought
+    FROM stocks_topic
+    WHERE side = 'BUY'
+    GROUP BY symbol
 ```
 
-6. Insert all the aggregate the data by counting buys of stocks to the number_of_times_stock_bought table. 
-```sql
-INSERT INTO number_of_times_stock_bought
-SELECT symbol,
-       COUNT(quantity) AS total_times_bought
-FROM stocks_topic
-WHERE side = 'BUY'
-GROUP BY symbol
-```
-7. Add Flink Statement windows by click (+). Running query to the number_of_times_stock_bought table. 
+6. Add Flink Statement windows by click (+). Running query to the number_of_times_stock_bought table. 
 ```sql
 select * from number_of_times_stock_bought;
 ```
-8. Next, create a table that calculates the total number of stocks purchased per symbol.  
+
+7. Next, create a table that calculates the total number of stocks purchased per symbol.  
 ```sql
 SELECT symbol,
            SUM(quantity) AS total_quantity
@@ -497,27 +496,24 @@ FROM stocks_topic
 WHERE side = 'BUY'
 GROUP BY symbol
 ```
-9. Create new table total_stock_purchased to store the result. 
+
+8. Create new table total_stock_purchased that calculates the total number of stocks purchased per symbol to store the result. 
 ```sql
 CREATE TABLE total_stock_purchased(
   symbol STRING,
   total_quantity BIGINT,
   PRIMARY KEY (symbol) NOT ENFORCED
-)WITH (
-     'kafka.partitions' = '3'
-);
+)
+DISTRIBUTED INTO 3 BUCKETS
+AS
+    SELECT symbol,
+        SUM(quantity) AS total_quantity 
+    FROM stocks_topic
+    WHERE side = 'BUY'
+    GROUP BY symbol
 ```
 
-10. Insert all the aggregate the data by counting buys of stocks to the number_of_times_stock_bought table. 
-```sql
-INSERT INTO total_stock_purchased
-SELECT symbol,
-       SUM(quantity) AS total_quantity 
-FROM stocks_topic
-WHERE side = 'BUY'
-GROUP BY symbol
-```
-11. Add Flink Statement windows by click (+). Check the result by running query to the total_stock_purchased table. 
+9. Add Flink Statement windows by click (+). Check the result by running query to the total_stock_purchased table. 
 ```sql
 select * from total_stock_purchased;
 ```
@@ -572,11 +568,17 @@ CREATE TABLE stocks_purchased_today(
   window_end TIMESTAMP,
   quantity BIGINT,
   PRIMARY KEY (symbol, window_start,window_end) NOT ENFORCED
-)WITH (
-     'kafka.partitions' = '3'
-);
+)
+DISTRIBUTED INTO 3 BUCKETS
+AS
+    SELECT symbol,window_start,
+    window_end,     
+    COUNT(*) AS quantity
+    FROM TABLE(
+    TUMBLE(TABLE stocks_topic, DESCRIPTOR(`$rowtime`), INTERVAL '5' MINUTES))
+    GROUP BY symbol,window_end,window_start;
 ```
-
+<!-- 
 2. Insert data into the new table created above.
 ```sql
 insert into stocks_purchased_today
@@ -586,14 +588,14 @@ SELECT symbol,window_start,
 FROM TABLE(
   TUMBLE(TABLE stocks_topic, DESCRIPTOR(`$rowtime`), INTERVAL '5' MINUTES))
 GROUP BY symbol,window_end,window_start;
-```
+``` -->
 
-3. Add Flink Statement windows by click (+). Once you have created the windowed table, and you have inserted the data , use the Flink Workspace to query the table. If you construct the statement on your own, make sure it looks like the following..
+2. Add Flink Statement windows by click (+). Once you have created the windowed table, and you have inserted the data , use the Flink Workspace to query the table. If you construct the statement on your own, make sure it looks like the following..
 ```sql
 select * from stocks_purchased_today
 ```
 
-4. Going along with the theme of fraud detection, create a table named accounts_to_monitor with accounts to monitor based on their activity during a given time frame. In the Flink Workspace , paste the following statement and run the query. Change XXX with your random number.
+3. Going along with the theme of fraud detection, create a table named accounts_to_monitor with accounts to monitor based on their activity during a given time frame. In the Flink Workspace , paste the following statement and run the query. Change XXX with your random number.
 ```sql
 CREATE TABLE accounts_to_monitor_XXX(
   window_start TIMESTAMP,
@@ -601,26 +603,24 @@ CREATE TABLE accounts_to_monitor_XXX(
   account STRING,
   quantity BIGINT,
   PRIMARY KEY (window_start,window_end,account) NOT ENFORCED
-)WITH (
-     'kafka.partitions' = '3'
-);
+)
+DISTRIBUTED INTO 3 BUCKETS
+AS
+    SELECT window_start,
+    window_end,
+    account,     
+    COUNT(*) AS quantity
+    FROM TABLE(
+    TUMBLE(TABLE stocks_topic, DESCRIPTOR(`$rowtime`), INTERVAL '5' MINUTES))
+    GROUP BY window_end,window_start,account
+    HAVING COUNT(*)>10;
 ```
-5. Insert data into the new table created above.
+
+4. Add Flink Statement windows by click (+). Verify the result.
 ```sql
-INSERT INTO accounts_to_monitor_XXX
-SELECT window_start,
-  window_end,
-  account,     
-  COUNT(*) AS quantity
-FROM TABLE(
-  TUMBLE(TABLE stocks_topic, DESCRIPTOR(`$rowtime`), INTERVAL '5' MINUTES))
-GROUP BY window_end,window_start,account
-HAVING COUNT(*)>10;
-```
-6. Add Flink Statement windows by click (+). Verify the result.
-  ```sql
 Select * from  accounts_to_monitor_XXX;
 ``` 
+
 ***
 
 ## <a name="step-11"></a>Check Flink Queries
@@ -649,13 +649,13 @@ The next step is to sink data from Confluent Cloud into BigQuery using the [full
 
 1. First, you will create the connector that will automatically create a BigQuery table and populate that table with the data from the promotions topic within Confluent Cloud. From the Confluent Cloud UI, click on the Connectors tab on the navigation menu and select **+Add connector**. Search and click on the BigQuery Sink icon.
 
-<div align="center">
-    <img src="images/bigquery-1.png" width=30% height=30%>
-</div>
+
+<img src="images/bigquery-1.png" width=40%>
+
 
 2. Enter the following configuration details. The remaining fields can be left blank.
 
-<div align="center">
+
 
 | Setting                | Value                              |
 |------------------------|------------------------------------|
@@ -677,54 +677,52 @@ The next step is to sink data from Confluent Cloud into BigQuery using the [full
 | `Name`                 | BigQueryStorageSinkConnector_accounts_to_monitor    |
 
 
-</div>
-
 - Topic Selection
-<div align="center">
-    <img src="images/bigquery-2.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-2.png" width=80%>
+
 
 <br>
 
 - Authentication
-<div align="center">
-    <img src="images/bigquery-3.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-3.png" width=80%>
+
 
 3. Click on **Next**.
 
 4. Before launching the connector, you will be brought to the summary page.  Once you have reviewed the configs and everything looks good, select **Launch**.
 
-<div align="center">
-    <img src="images/bigquery-4.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-4.png" width=80%>
+
 
 5. This should return you to the main Connectors landing page. Wait for your newly created connector to change status from **Provisioning** to **Running**.
 
 6. Shortly after, please switch over to the BigQuery page within Google Console to show that a table matching the topic name you used when creating the BigQuery connector in Confluent Cloud has been created within the dataset that you have provided.  Clicking the table name should open a BigQuery editor for it.
 
-<div align="center">
-    <img src="images/bigquery-5.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-5.png" width=80%>
+
 
 7. Query results in Bigquery.
 
-<div align="center">
-    <img src="images/bigquery-6.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-6.png" width=80%>
+
 
 8. Explore data in Looker Studio.
 
-<div align="center">
-    <img src="images/bigquery-7.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-7.png" width=80%>
+
 
 <br>
 
 - Looker Studio
-<div align="center">
-    <img src="images/bigquery-8.png" width=75% height=75%>
-</div>
+
+<img src="images/bigquery-8.png" width=80%>
+
 
 ***
 
@@ -734,25 +732,29 @@ Deleting the resources you created during this workshop will prevent you from in
 
 1. The first item to delete is the Apache Flink Compute Pool. Select the **Delete** button under **Actions** and enter the **Application Name** to confirm the deletion. 
 
-<div align="center">
-    <img src="images/flink-delete-compute-pool.png" width=50% height=50%>
-</div>
+<img src="images/flink-delete-compute-pool.png" width=50%>
+
 
 2. Delete the BigQuery sink connector by navigating to **Connectors** in the navigation panel, clicking your connector name, then clicking the trash can icon in the upper right and entering the connector name to confirm the deletion.
 
-<div align="center">
-    <img src="images/delete-connector.png" width=60% height=60%>
-</div>
+<img src="images/delete-connector.png" width=60%>
+
 
 3. Next, delete the Datagen Source connectors for **users** and **stocks**. 
 
 4. Delete the Cluster by going to the **Settings** tab and then selecting **Delete cluster**.
 
-<div align="center">
-    <img src="images/delete-cluster.png" width=40% height=40%>
-</div>
+<img src="images/delete-cluster.png" width=40%>
 
 5. Delete the Environment by expanding right hand menu and going to **Environments** tab and then clicking on **Delete** for the associated Environment you would like to delete
+
+6. 만약 Confluent Cloud 자체를 사용하지 않겠다면 Oraganization을 삭제해도 됩니다.
+
+오른쪽 상단 Admin 메뉴 > organization settings > "Delete this organization"
+
+<img src=images/delete-organization.png width=70%>
+
+
 
 *** 
 
@@ -761,5 +763,3 @@ Deleting the resources you created during this workshop will prevent you from in
 Here are some links to check out if you are interested in further testing:
 - [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)
 - [Best Practices for Developing Apache Kafka Applications on Confluent Cloud](https://assets.confluent.io/m/14397e757459a58d/original/20200205-WP-Best_Practices_for_Developing_Apache_Kafka_Applications_on_Confluent_Cloud.pdf)
-
-
