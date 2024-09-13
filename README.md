@@ -8,5 +8,5 @@ This repository contains workshops and workshop series created and presented by 
 
 ## Series
 
-* [Getting Started with Confluent: How You Can Set Your Data in Motion](https://github.com/jupilhwang/commercial-workshops/tree/master/series-getting-started-with-cc)
-* [Confluent x Google Cloud Data Streaming BUILDER Lab](https://github.com/jupilhwang/commercial-workshops/tree/master/Confluent-GCP-Builder-Lab-Flink)
+* [Getting Started with Confluent: How You Can Set Your Data in Motion](https://github.com/jupilhwang/commercial-workshops/tree/kr-workshops/series-getting-started-with-cc)
+* [Confluent x Google Cloud Data Streaming BUILDER Lab](https://github.com/jupilhwang/commercial-workshops/tree/kr-workshops/Confluent-GCP-Builder-Lab-Flink)
