@@ -98,7 +98,6 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 <img src="images/enter-payment.png" width=50%>
 
-9/13 Test: **POPTOUT000XUBWB9SI7**
 9/24 CFLTxGoogle Builder Live Lab: **POPTOUT000E6WJU8LFX66**
 
 9. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
