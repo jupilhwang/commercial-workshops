@@ -18,12 +18,18 @@
 12. [Connect BigQuery sink to Confluent Cloud](#step-12)
 13. [Clean Up Resources](#step-13)
 14. [Confluent Resources and Further Testing](#step-14)
+15. [Confluent FLink AI Model Inference]($step-15)
+
+<br/><br/>
 
 ***
 
 ## **Architecture**
 
 ![](images/GCP-builder-arch.png)
+
+<br/>
+<br/>
 
 ***
 
@@ -760,3 +766,40 @@ Deleting the resources you created during this workshop will prevent you from in
 Here are some links to check out if you are interested in further testing:
 - [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)
 - [Best Practices for Developing Apache Kafka Applications on Confluent Cloud](https://assets.confluent.io/m/14397e757459a58d/original/20200205-WP-Best_Practices_for_Developing_Apache_Kafka_Applications_on_Confluent_Cloud.pdf)
+
+
+
+***
+**GenAI / LLM 연계에 관심이 있으시면 한번 확인 해 보세요**
+
+## <a name"step-15"></a>Flink AI Model Inference - Remote Model Inference 
+
+Create the Confluent Flink Connection resource to connect Google Vertex AI with Confluent CLI
+
+```bash
+confluent flink connection create vertexai-connection \
+--cloud gcp \
+--region asia-southeast1 \
+--type vertexai \
+--endpoint https://<REGION>-aiplatform.googleapis.com/v1/projects/<PROJECT_ID>/locations/<REGION>/endpoints/ENDPOINT_ID:predict \
+--service-key <vertex-service-key> \
+```
+
+Create the Flink MODEL
+```sql
+SET 'sql.secrets.my_service_key' = '<service_key>';
+CREATE MODEL predicteddefault
+INPUT (credit_limit INT)
+OUTPUT (predicted_label STRING)
+WITH (
+  'provider' = 'vertexai',
+  'task' = 'classification',
+  'vertexai.connection' = 'vertexai-connection'
+)
+```
+
+Invoke AI model
+```sql
+SELECT * FROM google_input, LATERAL TABLE(ML_PREDICT('predicteddefault', text));
+```
+
