@@ -32,13 +32,13 @@
 1. Create a Confluent Cloud Account.
     - Sign up for a Confluent Cloud account [here](https://www.confluent.io/ko-kr/get-started/?utm_campaign=tm.fm-apac_cd.2024.09.24_APAC_KR_WS_GCP-x-CFLT-BUILDER-Live-Lab).
 
-<img src=images/confluent-cloud-account-google.png width=50%>
+<img src=images/confluent-cloud-account-google.png width=70%>
 
     - Once you have signed up and logged in, click on the menu icon at the upper right hand corner, click on “Billing & payment”, then enter payment details under “Payment details & contacts”. A screenshot of the billing UI is included below.
 
 > **Note:** You will create resources during this workshop that will incur costs. When you sign up for a Confluent Cloud account, you will get free credits to use in Confluent Cloud. This will cover the cost of resources created during the workshop. More details on the specifics can be found [here](https://www.confluent.io/confluent-cloud/tryfree/).
 
-<img src=images/billing-payment.png width=50%>
+<img src=images/billing-payment.png width=70%>
 
 ***
 
@@ -58,7 +58,7 @@ During the session, we will explore:
 
 1. Log into [Confluent Cloud](https://confluent.cloud) and enter your email and password.
 
-<img src="images/login.png" width=50%>
+<img src="images/login.png" width=70%>
 
 
 2. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
@@ -73,13 +73,13 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 >**Note:** There is a *default* environment ready in your account upon account creation. You can use this *default* environment for the purpose of this workshop if you do not wish to create an additional environment.
 
-<img src="images/environment.png" width=50%>
+<img src="images/environment.png" width=70%>
 
 <!-- 2. Select **Essentials** for Stream Governance Packages, click **Create**.
 
 3. Select **GCP Singapore Region** for Stream Governance Essentials, click **Continue**.
 
-<img src="images/stream-governance-2.png" width=50%> -->
+<img src="images/stream-governance-2.png" width=70%> -->
 
 2. Now that you have an environment, click **Create Cluster on my own**. 
 
@@ -87,20 +87,20 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 5. Chose the **Basic** cluster type. 
 
-<img src="images/cluster-type.png" width=50%>
+<img src="images/cluster-type.png" width=70%>
 
 6. Click **Begin Configuration**. 
 7. Choose GCP as Cloud Provider and your preferred, region (Singapore/ asia-southeast1) , and Uptime SLA is default. 
 
-<img src="images/cluster-region.png" width=50%>
+<img src="images/cluster-region.png" width=70%>
 
 8. Add Promo-code for this workshop : 9/24 CFLTxGoogle Builder Live Lab: **POPTOUT000E6WJU8LFX66**
 
-<img src="images/enter-payment.png" width=50%>
+<img src="images/enter-payment.png" width=70%>
 
 9. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
 
-<img src="images/create-cluster.png" width=50%>
+<img src="images/create-cluster.png" width=70%>
 
 10. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
 
@@ -112,40 +112,40 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 1. On the navigation menu, select **Flink** and click **Create Compute Pool**.
 
-<img src="images/create-flink-pool-1.png" width=50%>
+<img src="images/create-flink-pool-1.png" width=70%>
 
 
 2. Select **Region** (Singapore) and then **Continue**.
 
 > Choose the same Region with Cluster what created before
 
-<img src="images/create-flink-pool-2.png" width=50%>
+<img src="images/create-flink-pool-2.png" width=70%>
 
 
 3. Name you **Pool Name**. Click **Create**.
 
-<img src="images/create-flink-pool-3.png" width=50%>
+<img src="images/create-flink-pool-3.png" width=70%>
 
 > **Note:** The capacity of a compute pool is measured in CFUs. Compute pools expand and shrink automatically based on the resources required by the statements using them. A compute pool without any running statements scale down to zero. The maximum size of a compute pool is configured during creation. 
 
 4. Flink Compute pools will be ready in minutes. You can click **Open SQL workspace** when the pool is ready to use.
 
-<img src="images/create-flink-pool-4.png" width=50%>
+<img src="images/create-flink-pool-4.png" width=70%>
 
 
 5. Change your workspace name by clicking **settings button**. Click **Save changes** after you update the workspace name.
 
-<img src="images/flink-workspace-1.png" width=50%>
+<img src="images/flink-workspace-1.png" width=70%>
 
 
 6. Set the default Catalog as your environment name.
 
-<img src="images/flink-workspace-2.png" width=50%>
+<img src="images/flink-workspace-2.png" width=70%>
 
 
 7. Set the default Database as your cluster name.
 
-<img src="images/flink-workspace-2.png" width=50%>
+<img src="images/flink-workspace-2.png" width=70%>
 
 ***
 
@@ -155,7 +155,7 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 > **Note:** This section shows Cluster Metrics, such as Throughput and Storage. This page also shows the number of Topics, Partitions, Connectors, and ksqlDB Applications.  Below is an example of the metrics dashboard once you have data flowing through Confluent Cloud. 
 
-<img src=images/cluster-metrics.png width=50%>
+<img src=images/cluster-metrics.png width=70%>
 
 2. Click on **Cluster Settings**. This is where you can find your **Cluster ID, Bootstrap Server, Cloud Details, Cluster Type,** and **Capacity Limits**.
 3. On the same navigation menu, select **Topics** and click **Create Topic**. 
@@ -182,7 +182,7 @@ An environment contains clusters and its deployed components such as Apache Flin
 1. Click **API Keys** on the navigation menu. 
 2. Click **Create Key** in order to create your first API Key. If you have an existing API Key select **+ Add Key** to create another API Key.
 
-<img src="images/create-apikey.png" width=50%>
+<img src="images/create-apikey.png" width=70%>
 
 
 3. Select **My account** and then click **Next**. 
@@ -224,7 +224,7 @@ The next step is to produce sample data using the Datagen Source connector. You 
    
 4. Before launching the connector, you should see something similar to the following. If everything looks similar, select **Launch**. 
 
-<img src="images/datagen-4.png" width=50%>
+<img src="images/datagen-4.png" width=70%>
 
 
 5. Next, create the second connector that will send data to **stocks_topic**. Click on **+ Add Connector** and then the **datagen Source** icon again. 
@@ -729,7 +729,7 @@ Deleting the resources you created during this workshop will prevent you from in
 
 1. The first item to delete is the Apache Flink Compute Pool. Select the **Delete** button under **Actions** and enter the **Application Name** to confirm the deletion. 
 
-<img src="images/flink-delete-compute-pool.png" width=50%>
+<img src="images/flink-delete-compute-pool.png" width=70%>
 
 
 2. Delete the BigQuery sink connector by navigating to **Connectors** in the navigation panel, clicking your connector name, then clicking the trash can icon in the upper right and entering the connector name to confirm the deletion.
