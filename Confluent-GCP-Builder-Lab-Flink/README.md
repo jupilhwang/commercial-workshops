@@ -772,7 +772,7 @@ Here are some links to check out if you are interested in further testing:
 ***
 **GenAI / LLM 연계에 관심이 있으시면 한번 확인 해 보세요**
 
-## <a name"step-15"></a>Flink AI Model Inference - Remote Model Inference 
+## <a name="step-15"></a>Flink AI Model Inference - Remote Model Inference 
 
 Create the Confluent Flink Connection resource to connect Google Vertex AI with Confluent CLI
 
