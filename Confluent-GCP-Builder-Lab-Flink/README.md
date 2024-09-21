@@ -100,7 +100,7 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 <img src="images/cluster-region.png" width=70%>
 
-8. Add Promo-code for this workshop : 9/24 CFLTxGoogle Builder Live Lab: **POPTOUT000E6WJU8LFX66**
+8. Add Promo-code for this workshop : 9/24 CFLTxGoogle Builder Live Lab: **POPTOUT000RG0XJ68ULSD**
 
 <img src="images/enter-payment.png" width=70%>
 
