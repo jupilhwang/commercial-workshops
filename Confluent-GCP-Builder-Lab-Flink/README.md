@@ -771,6 +771,8 @@ Here are some links to check out if you are interested in further testing:
 
 ***
 **GenAI / LLM 연계에 관심이 있으시면 한번 확인 해 보세요**
+https://docs.confluent.io/cloud/current/flink/reference/statements/create-model.html
+
 
 ## <a name="step-15"></a>Flink AI Model Inference - Remote Model Inference 
 
