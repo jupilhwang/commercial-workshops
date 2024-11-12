@@ -27,14 +27,13 @@
 
 ***
 
-## **Prerequisites**
+## **전제 조건**
 <br>
+1. Confluent Cloud 계정을 만듭니다.
+ - Confluent Cloud 계정에 가입하십시오 [여기] (https://www.confluent.io/confluent-cloud/tryfree/).
+ - 가입하고 로그인 한 후 오른쪽 상단 코너의 메뉴 아이콘을 클릭하고 "Billing & payment"을 클릭 한 다음 "Payment details & contacts”"에 지불 세부 정보를 입력하십시오. Billing UI의 스크린 샷은 다음과 같습니다.
 
-1. Create a Confluent Cloud Account.
-    - Sign up for a Confluent Cloud account [here](https://www.confluent.io/confluent-cloud/tryfree/).
-    - Once you have signed up and logged in, click on the menu icon at the upper right hand corner, click on “Billing & payment”, then enter payment details under “Payment details & contacts”. A screenshot of the billing UI is included below.
-
-> **Note:** You will create resources during this workshop that will incur costs. When you sign up for a Confluent Cloud account, you will get free credits to use in Confluent Cloud. This will cover the cost of resources created during the workshop. More details on the specifics can be found [here](https://www.confluent.io/confluent-cloud/tryfree/).
+> **Note:** 이 워크숍 동안 비용이 발생할 수있는 리소스를 만들게됩니다. Confluent Cloud 계정에 가입하면 Confluent Cloud에서 사용할 수있는 무료 크레딧을 얻게됩니다. 이는 워크숍 동안 생성 된 자원 비용을 포함합니다. 세부 사항에 대한 자세한 내용은 확인할 수 있습니다 [here](https://www.confluent.io/confluent-cloud/tryfree/).
 
 <div align="center" padding=25px>
     <img src="images/billing.png" width=75% height=75%>
@@ -42,13 +41,13 @@
 
 ***
 
-## **Objective**
+## **목적**
 
 <br>
 
-Welcome to “Enable Real-Time Data Transformations and Stream Processing with Apache Flink on Confluent Cloud”! In this workshop, you will learn how to build stream processing applications using Apache Flink on Confluent Cloud as well as learn about the use cases Apache Flink unlocks: streaming ETL, data discovery and enrichment, anomaly detection, and more.
+"합류 클라우드에서 Apache Flink를 사용하여 실시간 데이터 변환 및 스트림 처리 활성화"에 오신 것을 환영합니다! 이 워크숍에서는 합류 클라우드에서 Apache Flink를 사용하여 스트림 처리 애플리케이션을 구축하는 방법을 배우고 Apache Flink Unlocks (스트리밍 ETL, 데이터 검색 및 강화, 이상 탐지 등 사용)에 대해 배우게됩니다.
 
-In this workshop, you will have learned how to leverage Apache Flink to perform continuous transformations, create materialized views, and serve lookups against these materialized views all with the data you already have in Confluent Cloud even connected with Bedrock to leverage your AI Implementation in real-time.
+ 이 워크숍에서는 Apache Flink를 활용하여 지속적인 변환을 수행하고, 구체화 된 뷰를 만들고, 구체화 된 뷰에 대한 조회를 제공하는 방법을 배웠을 것입니다..
 
 <div align="center" padding=25px>
     <img src="images/arc.png" width=75% height=75%>
@@ -59,91 +58,91 @@ In this workshop, you will have learned how to leverage Apache Flink to perform 
 
 ## <a name="step-1"></a>Log into Confluent Cloud
 
-1. Log into [Confluent Cloud](https://confluent.cloud) and enter your email and password.
+1. [Confluent Cloud](https://confluent.cloud) 에 로그인하기 위해 이메일과 비밀번호를 입력하십시오.
 
 <div align="center" padding=25px>
     <img src="images/login.png" width=50% height=50%>
 </div>
 
-2. If you are logging in for the first time, you will see a self-guided wizard that walks you through spinning up a cluster. Please minimize this as you will walk through those steps in this workshop. 
+2. 처음으로 로그인하는 경우 클러스터의 기본 기능을 돌아볼 수 있는 셀프 가이드 마법사가 표시됩니다. 이 워크숍에서 이러한 단계를 진행할 때 이를 최소화하십시오.
 
 ***
 
 ## <a name="step-2"></a>Create an Environment and Cluster
 
-An environment contains clusters and its deployed components such as Apache Flink, Connectors, ksqlDB, and Schema Registry. You have the ability to create different environments based on your company's requirements. For example, you can use environments to separate Development/Testing, Pre-Production, and Production clusters. 
+환경에는 클러스터, Apache Flink, 커넥터, KSQLDB 및 스키마 레지스트리등 여러가지 배포된 구성 요소가 포함되어 있습니다. 회사의 요구 사항에 따라 다양한 환경을 만들 수 있습니다. 예를 들어 환경을 사용하여 개발/테스트, 스테이징 및 운영 클러스터를 분리할 수 ​​있습니다.
 
-1. Click **+ Add Environment**. Specify an **Environment Name** and Click **Create**. 
+1.**New Environment**를 클릭하십시오. **Environment Name**을 지정하고 **Create**를 클릭하십시오. 
 
->**Note:** There is a *default* environment ready in your account upon account creation. You can use this *default* environment for the purpose of this workshop if you do not wish to create an additional environment.
+>**Note:** 계정 생성 시 계정에는 기본적으로 **default** 환경이 준비되어 있습니다. 추가 환경을 만들고 싶지 않은 경우이 워크숍의 목적으로 이 **default** 환경을 사용할 수 있습니다.
 
 <div align="center" padding=25px>
     <img src="images/environment.png" width=50% height=50%>
 </div>
 
-2. Now that you have an environment, click **Create Cluster**. 
+2.이제 Environment를 만들었으므로 **Create Cluster**를 클릭하십시오.
 
-> **Note:** Confluent Cloud clusters are available in 3 types: Basic, Standard, and Dedicated. Basic is intended for development use cases so you will use that for the workshop. Basic clusters only support single zone availability. Standard and Dedicated clusters are intended for production use and support Multi-zone deployments. If you are interested in learning more about the different types of clusters and their associated features and limits, refer to this [documentation](https://docs.confluent.io/current/cloud/clusters/cluster-types.html).
+> **Note:** Confluent Cloud 클러스터는 basic, standard, Enterprise, dedicated 4 가지 유형으로 제공됩니다. basic은 개발 사용 사례를 위한 것이므로 워크숍에 사용합니다. basic 클러스터는 단일 영역 가용성만 지원합니다. standard, enterprise 및 dedicated 클러스터는 실제 운영환경을 위한 것이며 멀티 존 배포를 지원합니다. 다양한 유형의 클러스터와 관련 기능 및 한계에 대해 더 많이 배우고 싶다면 이 [문서](https://docs.confluent.io/current/cloud/clusters/cluster-types.html)를 참조하십시오..
 
-3. Chose the **Basic** cluster type. 
+3. **Basic** 클러스터 유형을 선택했습니다.
 
 <div align="center" padding=25px>
     <img src="images/cluster-type.png" width=50% height=50%>
 </div>
 
-4. Click **Begin Configuration**. 
-5. Choose your preferred Cloud Provider (AWS, GCP, or Azure), region, and availability zone. 
-6. Specify a **Cluster Name**. For the purpose of this lab, any name will work here. 
+4. **Begin Configuration** 선택.
+5. 선호하는 클라우드 제공 업체 (AWS, GCP 또는 Azure), 지역 및 가용성 영역을 선택하십시오.
+6. **Cluster Name**을 지정하십시오. 이 워크샵의 목적을 위해 어떤 이름으로도 작동합니다.
 
 <div align="center" padding=25px>
     <img src="images/create-cluster.png" width=50% height=50%>
 </div>
 
-7. View the associated *Configuration & Cost*, *Usage Limits*, and *Uptime SLA* information before launching. 
-8. Click **Launch Cluster**. 
+7. 관련 **configuration & cost**, **Usage limits** 및 **Uptime SLA** 정보를 확인합니다.
+8. **Launch Cluster** 클릭하십시오.
 
 ***
 
-## <a name="step-3"></a>Create a Flink Compute Pool
+## <a name="step-3"></a>Create Flink Compute Pool
 
-1. On the navigation menu, select **Flink** and click **Create Compute Pool**.
+1. 탐색 메뉴의 **Flink**에서 **Create Compute Pool** 를 클릭하십시오.
 
 <div align="center" padding=25px>
     <img src="images/create-flink-pool-1.png" width=50% height=50%>
 </div>
 
-2. Select **Region** and then **Continue**.
+2. **Region** 을 선택하고 **Continue** 를 클릭하십시오.
 <div align="center" padding=25px>
     <img src="images/create-flink-pool-2.png" width=50% height=50%>
 </div>
 
-3. Name you Pool Name and set the capacity units (CFUs) to **5**. Click **Finish**.
+3. 풀 이름을 지정하고 용량(CFU)를 **5**로 설정하십시오. **Finish**를 클릭하십시오.
 
 <div align="center" padding=25px>
     <img src="images/create-flink-pool-3.png" width=50% height=50%>
 </div>
 
-> **Note:** The capacity of a compute pool is measured in CFUs. Compute pools expand and shrink automatically based on the resources required by the statements using them. A compute pool without any running statements scale down to zero. The maximum size of a compute pool is configured during creation. 
+> **Note:** 컴퓨팅 풀의 용량은 CFU에서 측정됩니다. 컴퓨팅 풀은 풀을 사용하는 명령문에 필요한 리소스에 따라 자동으로 확장 및 축소됩니다. 실행 명령문이 없는 컴퓨팅 풀은 0으로 줄어 듭니다. 컴퓨팅 풀의 최대 크기는 생성 중에 선택하여 구성되며 언제든지 변경이 가능합니다. 
 
-4. Flink Compute pools will be ready shortly. You can click **Open SQL workspace** when the pool is ready to use.
+4. Flink Compute Pool은 곧 준비됩니다. 풀을 사용할 준비가 되었으면, **Open SQL workspace**을 클릭하십시오.
 
 <div align="center" padding=25px>
     <img src="images/create-flink-pool-4.png" width=50% height=50%>
 </div>
 
-5. Change your workspace name by clicking **settings button**. Click **Save changes** after you update the workspace name.
+5. **settings button** 클릭하여 작업공간 이름을 변경하십시오. 워크스페이스 이름을 변경하고 **Save changes** 클릭하십시오
 
 <div align="center" padding=25px>
     <img src="images/flink-workspace-1.png" width=50% height=50%>
 </div>
 
-6. Set the default Catalog as your environment name.
+6. 기본 카탈로그를 환경 이름으로 설정하십시오.
 
 <div align="center" padding=25px>
     <img src="images/flink-workspace-2.png" width=50% height=50%>
 </div>
 
-7. Set the default Database as your cluster name.
+7. 기본 데이터베이스를 클러스터 이름으로 설정하십시오.
 
 <div align="center" padding=25px>
     <img src="images/flink-workspace-3.png" width=50% height=50%>
@@ -153,30 +152,31 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 ## <a name="step-4"></a>Creates Topic and Walk Through Cloud Dashboard
 
-1. On the navigation menu, you will see **Cluster Overview**. 
+1. 탐색 메뉴에서 **Cluster Overview**. 를 클릭하십시오. 
 
-> **Note:** This section shows Cluster Metrics, such as Throughput and Storage. This page also shows the number of Topics, Partitions, Connectors, and ksqlDB Applications.  Below is an example of the metrics dashboard once you have data flowing through Confluent Cloud. 
+> **Note:** 이 섹션에서는 처리량 및 스토리지와 같은 클러스터 메트릭을 보여줍니다. 이 페이지는 또한 주제, 파티션, 커넥터 및 KSQLDB 응용 프로그램의 수를 보여줍니다. 아래는 Confluent Cloud를 통해 데이터가 흐르는 메트릭 대시 보드의 예입니다.
 
 <div align="center" padding=25px>
     <img src="images/cluster-metrics.png" width=75% height=75%>
 </div>
 
-2. Click on **Cluster Settings**. This is where you can find your *Cluster ID, Bootstrap Server, Cloud Details, Cluster Type,* and *Capacity Limits*.
-3. On the same navigation menu, select **Topics** and click **Create Topic**. 
-4. Enter **shoe_products** as the topic name, **3** as the number of partitions, and then click **Create with defaults**. 
+2. **Cluster Settings** 클릭하십시오. 이곳에서 **클러스터 ID**, **부트 스트랩 서버**, **클라우드 세부 사항**, **클러스터 유형**, 및 **용량 제한**을 찾을 수 있습니다.
+3. 동일한 내비게이션 메뉴에서, **Topics** 선택하고 **Create Topic**을 클릭하십시오.. 
+4. 토픽이름으로 **shoe_products** 입력하고, 파티션 수로 **3**을 입력하고, **Create with defaults**을 클릭하십시오. 
 
 <div align="center" padding=25px>
     <img src="images/create-topic.png" width=50% height=50%>
 </div>
 
-5. Repeat the previous step and create a second topic name **shoe_customers** and **3** as the number of partitions.
+5. 이전 단계를 반복하고 **shoe_customers** 과 **3** 개의 파티션으로 두번째 토픽을 만듭니다. 
    
-6. Repeat the previous step and create a second topic name **shoe_orders** and **3** as the number of partitions.
+6. 이전 단계를 반복하고 **shoe_orders** 과 **3** 개의 파티션으로 세번째 토픽을 만듭니다. 
 
-> **Note:** Topics have many configurable parameters. A complete list of those configurations for Confluent Cloud can be found [here](https://docs.confluent.io/cloud/current/using/broker-config.html). If you are interested in viewing the default configurations, you can view them in the Topic Summary on the right side. 
+> **Note:** Topic에는 많은 구성 가능한 매개 변수가 있습니다. Confluent Cloud 에 대한 구성의 전체 목록을 [여기](https://docs.confluent.io/cloud/current/using/broker-config.html)에서 찾을 수 있습니다. 기본 구성을 보는 데 관심이 있으시면 오른쪽의 Topic 요약에서 볼 수 있습니다.
 
-7. After topic creation, the **Topics UI** allows you to monitor production and consumption throughput metrics and the configuration parameters for your topics. When you begin sending messages to Confluent Cloud, you will be able to view those messages and message schemas.
-8. Below is a look at the topic, **shoe_orders**, but you need to send data to this topic before you see any metrics.
+7. Topic 생성 후 **Topic UI**를 사용하면 Production / Consumption 처리량 메트릭과 Topic의 구성 매개 변수를 모니터링 할 수 있습니다. Conflure Cloud에 메시지를 보내기 시작하면 해당 메시지 및 메시지 스키마를 볼 수 있습니다.
+
+8. 아래는 **shoe_order** Topic을 보여주지만 메트릭을 보려면 이 Topic으로 데이터를 보내야 합니다.
 
 <div align="center" padding=25px>
     <img src="images/shoe_orders-topic.png" width=75% height=75%>
@@ -186,30 +186,32 @@ An environment contains clusters and its deployed components such as Apache Flin
 
 ## <a name="step-5"></a>Create an API Key
 
-1. Click **API Keys** on the navigation menu. 
-2. Click **Create Key** in order to create your first API Key. If you have an existing API Key select **+ Add Key** to create another API Key.
+1. 탐색 메뉴에서 **API Keys** 를 클릭하십시오.
+2. 첫번째 API Key를 만들기 위해 **Create Key** 를 클릭하십시오. 기존에 API Key가 있다면 **+ Add Key** 로 다른 API Key를 생성할 수 있습니다.
 
 <div align="center" padding=25px>
     <img src="images/create-apikey.png" width=75% height=75%>
 </div>
 
-3. Select **Global Access** and then click **Next**. 
-4. Copy or save your API Key and Secret somewhere. You will need these later on in the lab, you will not be able to view the secret again once you close this dialogue. 
-5. After creating and saving the API key, you will see this API key in the Confluent Cloud UI in the **API Keys** section. If you don’t see the API key populate right away, refresh the browser.
+3. **Global Access** 를 선택하고 **Next** 클릭하십시오. 
+
+4. API Key와 Secret은 어딘가에 복사하거나 저장하십시오. 나중에 워크샵에서 이것들이 필요할 것입니다. 이 대화창을 닫으면 Secret을 다시 볼 수 없습니다.
+
+5. API Key를 생성하고 저장 한 후에는 Confluent Cloud UI의 **API Key** 메뉴에 이 API Key가 표시됩니다. API Key가 바로 채워지지 않으면 브라우저를 새로 고치십시오.
 
 ***
 
 ## <a name="step-6"></a>Create Datagen Connectors for Customers, Products and Orders
 
-The next step is to produce sample data using the Datagen Source connector. You will create three Datagen Source connectors. One connector will send sample customer data to **shoe_customers** topic, the other connector will send sample product data to **shoe_products** topic, and final connector will send sample order data to **shoe_orders** topic.
+다음 단계는 Datagen 소스 커넥터를 사용하여 샘플 데이터를 생성하는 것입니다. 3 개의 Datagen 소스 커넥터를 생성합니다. 하나의 커넥터는 샘플 고객 데이터를 **shoe_customers** Topic으로 보냅니다. 다른 커넥터는 샘플 제품 데이터를 **shoe_products** Topic으로 보냅니다. 그리고 마지막 커넥터는 샘플 주문 데이터를 **shoe_orders** Topic으로 보냅니다.
 
-1. First, you will create the connector that will send data to **shoe_customers**. From the Confluent Cloud UI, click on the **Connectors** tab on the navigation menu. Click on the **Datagen Source** icon.
+1. 먼저, **shoe_customers**로 데이터를 보내는 커넥터를 만듭니다. Confluent Cloud UI에서 탐색 메뉴의 **Connector** 를 클릭하십시오. **Sample Data** 아이콘을 클릭하십시오.
 
 <div align="center" padding=25px>
     <img src="images/connectors.png" width=75% height=75%>
 </div>
 
-2. Enter the following configuration details. The remaining fields can be left blank.
+2. 다음 구성 세부 정보를 입력하십시오. 나머지 필드는 비워둘 수 있습니다.
 
 <div align="center">
 
@@ -232,21 +234,21 @@ The next step is to produce sample data using the Datagen Source connector. You 
     <img src="images/datagen-2.png" width=75% height=75%>
 </div>
 
-3. Click on **Show advanced configurations** and complete the necessary fields and click **Continue**.
+3. **Show advanced configurations** 을 클릭하여 필요한 항목을 입력하고 **Continue**를 클릭하십시오.
 
 <div align="center" padding=25px>
     <img src="images/datagen-3.png" width=75% height=75%>
 </div>
    
-4. Before launching the connector, you should see something similar to the following. If everything looks similar, select **Launch**. 
+4. 커넥터를 시작하기 전에 다음과 비슷한것을 볼 수 있습니다. 모든 것이 비슷해 보이면 **Launch**를 선택하십시오.
 
 <div align="center" padding=25px>
     <img src="images/datagen-4.png" width=50% height=50%>
 </div>
 
-5. Next, create the second connector that will send data to **shoe_products**. Click on **+ Add Connector** and then the **datagen Source** icon again. 
+5. 다음으로 **shoe_products** Topic으로 데이터를 보낼 두 번째 커넥터를 만듭니다. **Add Connector**를 클릭한 다음 **Sample Ddata** 아이콘을 다시 클릭하십시오
 
-6. Enter the following configuration details. The remaining fields can be left blank. 
+6. 다음 구성 세부 정보를 입력하십시오. 나머지 필드는 비워둘 수 있습니다.
 
 <div align="center">
 
@@ -264,11 +266,11 @@ The next step is to produce sample data using the Datagen Source connector. You 
 
 <br> 
 
-7. Review the output again and then select **Launch**.
+7. 출력을 다시 검토 한 다음 **Launch**를 선택하십시오.
 
-8. Next, create the second connector that will send data to **shoe_orders**. Click on **+ Add Connector** and then the **datagen Source** icon again. 
+8. 다음으로 **shoe_orders**로 데이터를 보내는 두 번째 커넥터를 만듭니다. **Add Connector**를 클릭한 다음 **Sample Dadata** 아이콘을 다시 클릭하십시오.
 
-9. Enter the following configuration details. The remaining fields can be left blank. 
+9. 다음 구성 세부 정보를 입력하십시오. 나머지 필드는 비워 둘 수 있습니다.
 
 <div align="center">
 
@@ -286,27 +288,27 @@ The next step is to produce sample data using the Datagen Source connector. You 
 
 <br> 
 
-10. Review the output again and then select **Launch**.
+10. 출력을 다시 검토한 다음 **Launch**를 클릭하십시오.
 
-> **Note:** It may take a few moments for the connectors to launch. Check the status and when both are ready, the status should show *running*. <br> <div align="center"><img src="images/running-connectors.png" width=75% height=75%></div>
+> **Note:** 커넥터가 시작되는데 잠시 시간이 걸릴 수 있습니다. 상태를 확인하고 둘 다 준비가 되면 상태가 **Running**을 표시해야 합니다. <br> <div align="center"><img src="images/running-connectors.png" width=75% height=75%></div>
 
-> **Note:** If the connectors fails, there are a few different ways to troubleshoot the error:
-> * Click on the *Connector Name*. You will see a play and pause button on this page. Click on the play button.
-> * Click on the *Connector Name*, go to *Settings*, and re-enter your API key and secret. Double check there are no extra spaces at the beginning or end of the key and secret that you may have accidentally copied and pasted.
-> * If neither of these steps work, try creating another Datagen connector.
+> **Note:** 커넥터가 실패하면 오류를 해결하는 몇 가지 방법이 있습니다.
+ > * 커넥터 이름을 클릭하십시오. 이 페이지에는 재생 및 일시 중지 버튼이 표시됩니다. 재생 버튼을 클릭하십시오.
+ > * 커넥터 이름을 클릭하고 **Settings**으로 이동하여 API Key와 Secret을 다시 입력하십시오. 
+ > * 이 단계 중 어느 것도 작동하지 않으면 다른 Datagen 커넥터를 만들어 보십시오.
 
 
-11. You can view the sample data flowing into topics in real time. Navigate to  the **Topics** tab and then click on the **shoe_customers**. You can view the production and consumption throughput metrics here.
+11. 실시간으로 Topic으로 흐르는 샘플 데이터를 볼 수 있습니다. **Topics** 탭으로 이동한 다음 **shoe_customers**를 클릭하십시오. 여기에서 Production 과 Consumption 처리량 지표를 볼 수 있습니다.
 
-12. Click on **Messages**.
+12. **Messages** 탭을 클릭하십시오.
 
-* You should now be able to see the messages within the UI. You can view the specific messages by clicking the icon. 
+* 이제 UI 내의 메시지를 볼 수 있어야 합니다. 아이콘을 클릭하여 특정 메시지를 볼 수 있습니다.
 
 <div align="center">
     <img src="images/message-view-1.png">
 </div> 
 
-* The message details should look something like the following. 
+* 메시지 세부 사항은 다음과 같은 것 같습니다.
 
 <div align="center">
     <img src="images/message-view-2.png" width=75% height=75%>
@@ -315,16 +317,16 @@ The next step is to produce sample data using the Datagen Source connector. You 
 ***
 
 ## <a name="step-7"></a>Flink Basics
-Kafka topics and schemas are always in sync with our Flink cluster. Any topic created in Kafka is visible directly as a table in Flink, and any table created in Flink is visible as a topic in Kafka. Effectively, Flink provides a SQL interface on top of Confluent Cloud.
+Kafka Topci과 스키마는 항상 Flink 클러스터와 동기화됩니다. Kafka에서 생성된 모든 Topic은 Flink의 테이블로 직접 볼 수 있으며 Flink에서 생성 된 모든 테이블은 Kafka에서 Topic으로 보입니다(Temporary Table을 사용할 수도 있습니다.). 효과적으로 Confluent Cloud 위에 Flink SQL 인터페이스를 제공합니다.
 
-Following mappings exist:
+다음 매핑이 존재합니다.
 | Kafka          | Flink     | 
 | ------------   | --------- |
 | Environment    | Catalog   | 
 | Cluster        | Database  |
 | Topic + Schema | Table     |
 
-1. Familiarize with **Flink SQL** Basics.
+1. **Flink SQL** 기본 사항에 익숙해지기 바랍니다.
 ```sql
 SHOW CATALOGS;
 ```
@@ -340,7 +342,7 @@ SHOW TABLES;
     <img src="images/show-tables.png" width=75% height=75%>
 </div>
 
-Understand how the table `shoe_products` was created:
+테이블 `shoe_products`가 어떻게 만들어 졌는지 확인해봅니다.
 
 ```sql
 SHOW CREATE TABLE shoe_products;
@@ -350,30 +352,30 @@ SHOW CREATE TABLE shoe_products;
     <img src="images/show-table-shoe_products.png" width=75% height=75%>
 </div>
 
-You can find more information about all DDL Statements [here.](https://docs.confluent.io/cloud/current/flink/reference/statements/overview.html)
+모든 DDL 문에 대한 자세한 내용은 [여기](https://docs.confluent.io/cloud/current/flink/reference/statements/overview.html)에서 확인 할 수 있습니다.
 
-Let us first check the table schema for our `shoe_products` catalog. This should be the same as the topic schema in Schema Registry.
+먼저 `shoe_products` 카탈로그에 대한 테이블 스키마를 확인하겠습니다. 이것은 Schema Registry의 주제 스키마와 동일해야합니다.
 ```sql
 DESCRIBE shoe_products;
 ```
 
-2. Let's check if any product records exist in the table.
+2. 테이블에 제품 기록이 있는지 확인해 봅시다.
 ```sql
 SELECT * FROM shoe_products;
 ```
 
-3. Check if the `shoe_customers` schema  exists. 
+3. `shoe_customers`스키마가 있는지 확인하십시오.
 ```sql
 DESCRIBE shoe_customers;
 ```
 
-4. Check the customers in Texas whose name start with `B`.
+4. 이름이`b`로 시작하는 Texas의 고객을 확인하십시오.
 ```sql
 SELECT * FROM shoe_customers
   WHERE `state` = 'Texas' AND `last_name` LIKE 'B%';
 ```
 
-5. Check the first ten orders for one customer.
+5. 한 고객에 대한 첫 10 개의 주문을 확인하십시오.
 ```sql
 SELECT order_id,
        product_id,
@@ -384,7 +386,7 @@ SELECT order_id,
   LIMIT 10;
 ```
 
-6. Find the message timestamps for all orders of one customer.
+6. 한 고객의 모든 주문에 대한 메시지 타임 스탬프 찾을수 있습니다.
 ```sql
 SELECT order_id,
        customer_id,
@@ -400,19 +402,19 @@ WHERE customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
 ***
 
 ## <a name="step-8"></a>Flink Aggregations
-1. Find the number of customers records.
+1. 고객수를 찾으십시오.
 ```sql
 SELECT COUNT(id) AS num_records
 FROM shoe_customers;
 ```
 
-2. Find the number of unique customers records.
+2. 고유한 고객수를 찾으십시오.
 ```sql
 SELECT COUNT(DISTINCT id) AS num_customers
 FROM shoe_customers;
 ```
 
-3. For each shoe brand, find the number of shoe models, average rating and maximum model price. 
+3. 각 신발 브랜드에 대해 신발 모델 수, 평균 등급 및 최대 모델 가격을 찾으십시오.
 ```sql
 SELECT brand as brand_name, 
        COUNT(DISTINCT name) as models_by_brand,
@@ -426,14 +428,14 @@ GROUP BY brand;
     <img src="images/flink-data-aggregation.gif" width=75% height=75%>
 </div>
 
-> **Note:** Check this [link](https://docs.confluent.io/cloud/current/flink/reference/functions/aggregate-functions.html) for more information about Flink aggregation functions.
+> **Note:** Flink Aggregation Functions에 대한 자세한 내용은 [다음](https://docs.confluent.io/cloud/current/flink/reference/functions/aggregate-functions.html)을 확인하시기 바랍니다.
 
 ***
 
 ## <a name="step-9"></a>Flink Windowing Functions
-Windows are central to processing infinite streams. Windows split the stream into “buckets” of finite size, over which you can apply computations. This document focuses on how windowing is performed in Confluent Cloud for Apache Flink and how you can benefit from windowed functions.
+Windows은 무한 스트림 처리의 중심입니다. Windows는 스트림을 유한 크기의 "버킷"으로 나누어 계산을 적용할 수 있습니다. 다음은 Confluent Cloud에서 Apache Flink Windowing을 수행하는 방법과 Windows 기능의 혜택을 얻을 수 있는 방법에 중점을 둡니다.
 
-Flink provides several window table-valued functions (TVF) to divide the elements of your table into windows, including:
+Flink는 다음을 포함하여 테이블의 요소를 Windows로 나누기 위해 여러 Windows 테이블 값 함수(TVF)를 제공합니다.
 
 a. [Tumble Windows](https://docs.confluent.io/cloud/current/flink/reference/queries/window-tvf.html#flink-sql-window-tvfs-tumble)
 <br> 
@@ -442,7 +444,7 @@ b. [Hop Windows](https://docs.confluent.io/cloud/current/flink/reference/queries
 c. [Cumulate Windows](https://docs.confluent.io/cloud/current/flink/reference/queries/window-tvf.html#flink-sql-window-tvfs-cumulate)
 <br> 
 
-1. Find the amount of orders for one minute intervals (tumbling window aggregation).
+1. 1분 간격에 대한 주문 금액을 찾으십시오. (Tumbling Window Aggregation)
 ```sql
 SELECT window_end,
        COUNT(DISTINCT order_id) AS num_orders
@@ -455,7 +457,7 @@ GROUP BY window_end;
     <img src="images/flink-window-function.gif" width=75% height=75%>
 </div>
 
-2. Find the amount of orders for ten minute intervals advanced by five minutes (hopping window aggregation).
+2. 10분 간격으로 5분씩 진행되는 주문 금액을 찾으십시오. (hopping window aggregation).
 ```sql
 SELECT window_start,
        window_end,
@@ -465,15 +467,15 @@ FROM TABLE(
 GROUP BY window_start, window_end;
 ```
 
-> **Note:** Check this [link](https://docs.confluent.io/cloud/current/flink/reference/queries/window-tvf.html) for the detailed information about Flink Window aggregations.
+> **Note:** Flink Window Aggregation에 대한 자세한 정보는 [다음](https://docs.confluent.io/cloud/current/flink/reference/queries/window-tvf.html)을 확인하기 바랍니다.
 
 ***
 
 ## <a name="step-10"></a>Flink Tables - Primary Key
-A primary key constraint is a hint for Flink SQL to leverage for optimizations which specifies that a column or a set of columns in a table or a view are unique and they do not contain null. No columns in a primary key can be nullable. A primary key uniquely identifies a row in a table.
-For more details please check this [link.](https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#primary-key-constraint)
+기본 키 제약 조건은 Flink SQL이 테이블 또는 뷰의 열 또는 열 세트가 고유하고 NULL을 포함하지 않음을 지정하여 최적화하는 힌트입니다. 기본 키의 열을 무효화할 수는 없습니다. 기본 키는 테이블에서 행을 고유하게 식별합니다.
+자세한 내용은 [다음](https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#primary-key-constraint)을 확인하십시오 [link.]
 
-1. Create a new table that will store unique customers only.
+1. 고유한 고객만 저장할 새 테이블을 만듭니다.
 ```sql
 CREATE TABLE shoe_customers_keyed (
   customer_id STRING,
@@ -484,7 +486,7 @@ CREATE TABLE shoe_customers_keyed (
 ) DISTRIBUTED BY (customer_id) INTO 1 BUCKETS;
 ```
 
-2. Compare the new table `shoe_customers_keyed` with `shoe_customers`.
+2. 새 테이블`shoe_customers_keyed`를 `shoe_customers`와 비교하십시오.
 ```sql
 SHOW CREATE TABLE shoe_customers;
 ```
@@ -496,10 +498,10 @@ SHOW CREATE TABLE shoe_customers_keyed;
     <img src="images/flink-tables-primary-key.png" width=75% height=75%>
 </div>
 
-By creating a table with Primary Key option, you changed the changelog-mode to upsert which means that all rows with same primary key are related and must be partitioned together.
-For more details please check this [link.](https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#changelog-mode)
+기본 키 옵션이 있는 테이블을 만들면 Changelog-mode를 Upsert로 변경합니다. 이는 동일한 기본 키가 있는 모든 행이 관련되어 있고 함께 분할되어야 함을 의미합니다.
+자세한 내용은 [다음](https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#changelog-mode)을 확인하십시오.
 
-3. Create a new Flink job to copy customer data from the original table to the new table.
+3. 원래 테이블에서 새 테이블로 고객 데이터를 복사하기 위해 새 플링크 작업을 작성하십시오.
 ```sql
 INSERT INTO shoe_customers_keyed
   SELECT id,
@@ -509,29 +511,28 @@ INSERT INTO shoe_customers_keyed
     FROM shoe_customers;
 ```
 
-4. Show the number of customers in `shoe_customers_keyed`.
+4.`shoe_customers_keyed`에서 고객수를 보여줍니다.
 ```sql
 SELECT COUNT(*) as number_of_customers
 FROM shoe_customers_keyed;
 ```
 
-5. Look up one specific customer in the keyed Table (shoe_customers_keyed).
+5.키 테이블 `SHOE_CUSTOMERS_KEYED`에서 특정 고객을 찾아보십시오.
 ```sql
 SELECT * 
 FROM shoe_customers_keyed  
 WHERE customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
 ```
 
-6. Look up the specific customer change history in non-keyed Table (shoe_customers).
+6. 키가 없는 테이블에서 특정 고객 변경 기록을 찾으십시오 (`SHOE_CUSTOMERS`).
 ```sql
 SELECT *
 FROM shoe_customers
 WHERE id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
 ```
 
-7. Product Catalog Table also requires unique rows for each item.
-Create a new table in order to have the latest information of each product. 
-It is useful when you need to know the latest price of the product for analytic purposes or you need to populate latest product information while joining with other tables. We will create new table using CTAS (Create Table As Select)
+7. 제품 카탈로그 테이블에는 각 항목마다 고유한 행이 필요합니다.
+각 제품의 최신 정보를 얻으려면 새 테이블을 만듭니다. 분석 목적으로 제품의 최신 가격을 알아야 할 때 유용하거나 다른 테이블과 합쳐지는 동안 최신 제품 정보를 채워야 합니다. CTAS(Create Table As Select)를 사용하여 새 테이블을 만들것 입니다.
 ```sql
 CREATE TABLE shoe_products_keyed(
   PRIMARY KEY (product_id) NOT ENFORCED
@@ -548,7 +549,7 @@ AS SELECT
     FROM shoe_products;
 ```
 
-8. CTAS will simplified from creating table and insert into one sql syntax. Check if only a single record is returned for some product.
+8. CTAS는 테이블 작성 및 하나의 SQL 구문에 삽입하여 단순화됩니다. 일부 제품에 대해 단일 레코드만 반환하는지 확인하십시오.
 ```sql
 SELECT * 
 FROM shoe_products_keyed  
@@ -558,14 +559,12 @@ WHERE product_id = '0fd15be0-8b95-4f19-b90b-53aabf4c49df';
 ***
 
 ## <a name="step-11"></a>Flink Joins
-Flink supports complex and flexible join operations over dynamic tables. There are a number of different types of joins to account for the wide variety of semantics that queries may require.
+Flink는 동적 테이블을 통해 복잡하고 유연한 조인 작업을 지원합니다. 쿼리가 요구할 수 있는 다양한 의미를 설명하기 위해 여러 가지 유형의 조인이 있습니다.
+기본적으로 조인 순서는 최적화되지 않습니다. 테이블은 FROM절에 지정된 순서로 결합됩니다.
+업데이트 빈도가 가장 낮은 테이블과 마지막 업데이트 빈도가 가장 높은 테이블을 나열하여 조인 쿼리의 성능을 조정할 수 있습니다. 크로스 조인 (Cartesian Product)을 생성하지 않는 순서로 테이블을 지정하여 지원되지 않고 쿼리가 실패하게 됩니다.
+자세한 내용은 [다음](https://docs.confluent.io/cloud/current/flink/reference/queries/joins.html)을 확인을 확인하십시오.
 
-By default, the order of joins is not optimized. Tables are joined in the order in which they are specified in the FROM clause.
-
-You can tweak the performance of your join queries, by listing the tables with the lowest update frequency first and the tables with the highest update frequency last. Make sure to specify tables in an order that doesn’t yield a cross join (Cartesian product), which aren’t supported and would cause a query to fail.
-For more details please check this [link.](https://docs.confluent.io/cloud/current/flink/reference/queries/joins.html)
-
-1. Join orders with non-keyed customer records (Regular Join).
+1. 키가 없는 고객과 주문 기록을 조인하십시오 (Regular Join).
 ```sql
 SELECT order_id,
        shoe_orders.`$rowtime` as ingestion_time,
@@ -581,10 +580,10 @@ WHERE customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
     <img src="images/flink-regular-join-duplicated.png" width=75% height=75%>
 </div>
 
-> **Note:** As expected the result has duplicated entries because of the non-keyed records.
+> **Note:** 예상대로 키가 없는 레코드로 인해 중복된 항목이 있습니다.
 
-2. Join orders with non-keyed customer records in some time windows (Interval Join).
-   Find orders of a specific customer in 1 hour interval after the last update of customer information. 
+2. 일정 시간 간격으로 키가 없는 고객 레코드와 주문을 조인하십시오 (Interal Join).
+고객 정보의 마지막 업데이트 후 1 시간 간격으로 특정 고객의 주문을 찾으십시오.
 ```sql
 SELECT order_id,
        shoe_orders.`$rowtime` as order_time,
@@ -607,7 +606,7 @@ WHERE customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a'
     <img src="images/flink-joins-customer-activity-order-time.png" width=75% height=75%>
 </div>
 
-3. Join orders with keyed customer records (Regular Join with Keyed Table).
+3. 키가 있는 고객 레코드와 함께 주문을 조인하십시오 (Keyed 테이블과 정기적으로 조인).
 ```sql
 SELECT order_id,
        shoe_orders.`$rowtime` as ingestion_time,
@@ -623,10 +622,9 @@ WHERE shoe_customers_keyed.customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
     <img src="images/flink-regular-join-keyed-table-unique.png" width=75% height=75%>
 </div>
 
-> **Note:** As expected the number of rows is lesser than the non-keyed table join. The duplicate entries are eliminated.
+> **Note:** 예상대로 행의 수는 키가 없는 테이블 조인보다 적습니다. 중복 항목이 제거됩니다.
 
-4. Join orders with keyed customer records at the time when order was created  (Temporal Join with Keyed Table).
-   Find orders of a specific customer with the latest customer information at the point of order creation.
+4. 주문이 생성된 시점(Key 테이블과의 임시 조인)에 Keyed 고객 레코드와 주문을 조인하십시오. 주문 생성 시 최신 고객 정보를 사용하여 특정 고객의 주문을 찾으십시오.
 ```sql
 SELECT order_id,
        shoe_orders.`$rowtime` as order_time,
@@ -643,12 +641,11 @@ WHERE shoe_customers_keyed.customer_id = 'b523f7f3-0338-4f1f-a951-a387beeb8b6a';
     <img src="images/flink-joins-latest-customer-info-order-time.png" width=75% height=75%>
 </div>
 
-> **Note:** There might be empty result set if keyed customers tables was created after the order records were ingested in the shoe_orders topic.
+> **Note:** `Shoe_orders` 토픽에서 주문 레코드를 수집된 후 키가 지정된 고객 테이블이 생성된 경우 빈 결과 세트가 있을 수 있습니다.
 
-> **Note:** For more details of temporal joins please check this [link.](https://docs.confluent.io/cloud/current/flink/reference/queries/joins.html#temporal-joins)
+> **Note:** Temporal Join 에 대한 자세한 내용은 [다음](https://docs.confluent.io/cloud/current/flink/reference/queries/joins.html#temporal-joins)을 확인하십시오.
 
-5. Enrich Order information with Customer and Product Table.
-   Create a new table for enriched order information.
+5. 고객 및 제품 테이블로 주문 정보를 보강합니다. 보강된 주문 정보를 위한 새 테이블을 만듭니다.
 ```sql
 CREATE TABLE shoe_orders_enriched_customer_product
 DISTRIBUTED BY (order_id) INTO 1 BUCKETS
@@ -672,7 +669,7 @@ FROM
     ON so.product_id = sp.product_id;
 ```
 
-Verify that the data was joined successfully.
+데이터가 성공적으로 결합되었는지 확인하십시오.
 ```sql
 SELECT * FROM shoe_orders_enriched_customer_product;
 ```
@@ -682,11 +679,10 @@ SELECT * FROM shoe_orders_enriched_customer_product;
 </div>
 
 
-
 ***
 
 ## <a name="step-12"></a>Customer Loyalty Level Calculation
-1. Calculate loyalty levels of each customer
+1. 각 고객의 충성도 수준을 계산하십시오
 ```sql
 SELECT
   email,
@@ -706,7 +702,7 @@ GROUP BY email;
 </div>
 
 
-2. Create a new table that will store the loyalty levels of customers.
+2. 고객의 충성도 수준을 저장하는 새 테이블을 만듭니다.
 ```sql
 CREATE TABLE shoe_loyalty_levels(
   email STRING,
@@ -733,7 +729,7 @@ FROM shoe_orders_enriched_customer_product
 GROUP BY email;
 ```
 
-3. Verify the results.
+3. 결과를 확인하십시오.
 ```sql
 SELECT *
 FROM shoe_loyalty_levels;
@@ -746,8 +742,8 @@ FROM shoe_loyalty_levels;
 ***
 
 ## <a name="step-13"></a>Create Promotional Campaigns
-Create special promotions based on the enriched orders table.
-1. Find eligible customers who order **'Jones-Stokes'** shoes **10th time**.
+보강된 주문 테이블을 기반으로 특별 프로모션을 만듭니다.
+1. **`Jones-Stokes`** 신발을 **10 번**를 주문한 자격이 있는 고객을 찾으십시오.
 ```sql
 SELECT
    email,
@@ -759,7 +755,7 @@ WHERE brand = 'Jones-Stokes'
 GROUP BY email;
 ```
 
-2. Find eligible customers who ordered **'Braun-Bruen'** and **'Will Inc'** in total more than **10**.
+2. **`Braun-Bruen`** 과 **`Will Inc`**을 **10번**이상 주문한 적격 고객을 찾으십시오.
 ```sql
 SELECT
    email,
@@ -771,7 +767,7 @@ GROUP BY email
 HAVING COUNT(DISTINCT brand) = 2 AND COUNT(brand) > 10;
 ```
 
-3. Create a table for promotion notifications.
+3. 프로모션 알림을 위한 테이블을 만듭니다.
 ```sql
 CREATE TABLE shoe_promotions(
   email STRING,
@@ -780,7 +776,7 @@ CREATE TABLE shoe_promotions(
 ) DISTRIBUTED BY (email) INTO 1 BUCKETS;
 ```
 
-4. Insert all the promotional information to the shoe_promotions table.  
+4. 모든 프로모션 정보를 `Shoe_Promotions` 테이블에 넣습니다.
 ```sql
 INSERT INTO shoe_promotions
 SELECT
@@ -803,7 +799,7 @@ GROUP BY email
 HAVING COUNT(DISTINCT brand) = 2 AND COUNT(brand) > 10;
 ```
 
-5. Verify the results.
+5. 결과를 확인하십시오.
 ```sql
 SELECT *
 FROM shoe_promotions;
@@ -816,27 +812,26 @@ FROM shoe_promotions;
 ***
 
 ## <a name="step-14"></a>Connect Flink with Bedrock Model
-The next step is to create a integrated model from AWS Bedrock with Flink on Confluent Cloud.
+다음 단계는 AWS Bedrock에 Confluent Cloud의 Flink와 연계를 위한 통합 모델을 만드는 것입니다.
 
-1. First, you will create the model connection using Confluent CLI. If you've never installed one, you could install it based on your OS (https://docs.confluent.io/confluent-cli/current/install.html) and login to confluent.
+1. 먼저 Confluent CLI를 사용하여 모델 연결을 만듭니다. CLI를 설치한 적이 없는 경우 OS(https://docs.confluent.io/confluent-cli/current/install.html)를 기반으로 설치하고 Confluent에 로그인할 수 있습니다.
 ```bash
 confluent login
 ```
 
-2. Make sure you prepare your AWS API Key and Secret to create connection to the Bedrock.
-
+2. Bedrock에 연결하려면 AWS API Key와 Secret을 준비해야 합니다.
 ```bash
 confluent flink connection create my-connection --cloud aws --region ap-southeast-2 --type bedrock --endpoint https://bedrock-runtime.us-west-2.amazonaws.com/model/anthropic.claude-3-sonnet-20240229-v1:0/invoke --aws-access-key <API Key> --aws-secret-key <API Secret>
 ```
 
-> **Note:** If you doesn't have any user you could check the step below to create user with full access to Bedrock and creating API key and secret. You could skip this step if you already have user and api key with full access to bedrock.
+> **Note:** 사용자가 없는 경우 아래 단계를 확인하여 Bedrock에 대한 전체 액세스와 API Key/Secret을 생성하는 사용자를 생성할 수 있습니다. Bedrock에 완전히 액세스 할 수 있는 사용자 및 API key가 이미 있는 경우 이 단계를 건너뛸 수 있습니다.
 
->Go to **AWS IAM>User** and create User
+>**AWS IAM>User** 로 가서 사용자를 생성하십시오
 <div align="center">
     <img src="images/bedrock0-1.png" width=100% height=100%>
 </div>
 
->Create User with attach policies for Bedrock Full Access
+>Bedrocks 전체 액세스에 대한 정책으로 사용자를 만듭니다
 <div align="center">
     <img src="images/bedrock0-2.png" width=100% height=100%>
 </div>
@@ -845,7 +840,7 @@ confluent flink connection create my-connection --cloud aws --region ap-southeas
     <img src="images/bedrock0-3.png" width=100% height=100%>
 </div>
 
->Create API Key by search your user that has been created and click on the "Create Access Key"
+>생성된 사용자를 검색하여 API Key 생성 및 "Create Access Key"를 클릭하십시오.
 <div align="center">
     <img src="images/bedrock0-4.png" width=100% height=100%>
 </div>
@@ -858,7 +853,7 @@ confluent flink connection create my-connection --cloud aws --region ap-southeas
     <img src="images/bedrock-2.png" width=100% height=100%>
 </div>
 
-3. After creating connection, we need to create the model in Flink before we could invoke on our query.
+3. 연결을 만들고 나서, 쿼리에서 호출하기 전에 Flink에서 모델을 생성해야 합니다.
 ```sql
 CREATE MODEL NotificationEngine
 INPUT (loyal_level STRING)
@@ -876,13 +871,12 @@ WITH (
     <img src="images/bedrock-3.png" width=100% height=100%>
 </div>
 
-4. For the table that we will invoke it supported under the stream/append mode.
+4. Stream/Append 모드의 테이블의 경우 지원합니다.
 ```sql
 ALTER TABLE shoe_loyalty_levels SET ('changelog.mode' = 'append');
 ```
 
-5. Now let's invoke the model and get the results.
-
+5. 이제 모델을 호출하고 결과를 확인합니다.
 ```sql
 SELECT email, promotion FROM shoe_loyalty_levels, LATERAL TABLE(ML_PREDICT('NotificationEngine', loyalty_level));
 ```
@@ -893,19 +887,19 @@ SELECT email, promotion FROM shoe_loyalty_levels, LATERAL TABLE(ML_PREDICT('Noti
 ***
 
 ## <a name="step-15"></a>Flink Monitoring
-1. Status of all the Flink Jobs is available under **Flink Statements** Tab.
+1. 모든 Flink 작업의 상태는 **Flink Statements** 탭에서 확인할 수 있습니다.
    
 <div align="center">
     <img src="images/flink-statements-status.png" width=75% height=75%>
 </div>
 
-2. Compute pool utilization is available by clicking **Compute Pool tile**.
+2. Compute Pool 사용률은 **Compute Pool tile**을 클릭하여 확인할 수 있습니다.
 
 <div align="center">
     <img src="images/flink-compute-pool-tile.png" width=40% height=40%>
 </div>
 
-3. Utilization information.
+3. 활용 정보.
 
 <div align="center">
     <img src="images/flink-utilization-info.png" width=75% height=75%>
@@ -918,21 +912,21 @@ SELECT email, promotion FROM shoe_loyalty_levels, LATERAL TABLE(ML_PREDICT('Noti
 
 ## <a name="step-16"></a>Clean Up Resources
 
-Deleting the resources you created during this workshop will prevent you from incurring additional charges. 
+이 워크샵에서 만든 리소스를 삭제하면 추가 요금이 부과되지 않습니다.
 
-1. The first item to delete is the Apache Flink Compute Pool. Select the **Delete** button under **Actions** and enter the **Application Name** to confirm the deletion. 
+1. 삭제하는 첫 번째 항목은 Apache Flink Compute Pool입니다. **action**에서 **Delete compute pool** 을 선택하고 **Application Name**을 입력하여 삭제하십시오.
 
 <div align="center">
     <img src="images/flink-delete-compute-pool.png" width=50% height=50%>
 </div>
 
-2. Next, delete the Datagen Source connectors for **shoe_orders**, **shoe_products** and **shoe_customers**. Navigate to the **Connectors** tab and select each connector. In the settings tab, you will see a **trash** icon on the bottom of the page. Click the icon and enter the **Connector Name**.
+2. 다음으로 **shoe_orders**, **shoee_products** 및 **shoe_customers**에 대한 Datagen Source 커넥터를 삭제하십시오. **Connectors** 탭으로 이동하고 각 커넥터를 선택하십시오. **Settings** 탭의 페이지 하단에 **쓰레기통** 아이콘이 표시됩니다. 아이콘을 클릭하고 **Connector Name**을 입력하십시오.
 
 <div align="center">
     <img src="images/delete-connector.png" width=75% height=75%>
 </div>
 
-3. Finally, under **Cluster Settings**, select the **Delete Cluster** button at the bottom. Enter the **Cluster Name** and select **Confirm**. 
+3. 마지막으로 **Cluster Settings** 아래의 **Delte Cluster** 버튼을 선택하십시오. **Cluster Name**을 입력하고 **Confirm**을 선택하십시오.
 
 <div align="center">
     <img src="images/delete-cluster.png" width=50% height=50%>
@@ -942,7 +936,7 @@ Deleting the resources you created during this workshop will prevent you from in
 
 ## <a name="step-17"></a>Confluent Resources and Further Testing
 
-Here are some links to check out if you are interested in further testing:
+추가로 다른 테스트에 관심이 있는지 확인할 수 있는 링크는 다음과 같습니다.
 - [Confluent Cloud Documentation](https://docs.confluent.io/cloud/current/overview.html)
 - [Apache Flink 101](https://developer.confluent.io/courses/apache-flink/intro/)
 - [Stream Processing with Confluent Cloud for Apache Flink](https://docs.confluent.io/cloud/current/flink/index.html)
